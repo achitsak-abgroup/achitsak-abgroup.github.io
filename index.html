@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>achitsakp — Knowledge Base</title>
+<meta name="description" content="คลังบทวิเคราะห์ ข้อมูล และ market research">
+<meta property="og:type" content="website">
+<meta property="og:title" content="achitsakp — Knowledge Base">
+<meta property="og:description" content="คลังบทวิเคราะห์ ข้อมูล และ market research">
+<meta property="og:locale" content="th_TH">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%232a4a73'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-family='sans-serif' font-size='56' font-weight='700' fill='white'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #faf9f6;
+  --surface: #ffffff;
+  --surface-sub: #f4f2ec;
+  --border: #e4e1d8;
+  --ink: #141414;
+  --ink-muted: #6b6963;
+  --ink-soft: #908d85;
+  --accent: #2a4a73;
+  --accent-soft: #e8edf3;
+  color-scheme: light;
+  --th: 'IBM Plex Sans Thai', ui-sans-serif, system-ui, sans-serif;
+  --num: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141412;
+    --surface: #1d1c1a;
+    --surface-sub: #262521;
+    --border: #35332e;
+    --ink: #f1efe9;
+    --ink-muted: #a6a39a;
+    --ink-soft: #7a7770;
+    --accent: #88a3c9;
+    --accent-soft: #223348;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141412; --surface: #1d1c1a; --surface-sub: #262521; --border: #35332e;
+  --ink: #f1efe9; --ink-muted: #a6a39a; --ink-soft: #7a7770;
+  --accent: #88a3c9; --accent-soft: #223348; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--th);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 64px) max(20px, env(safe-area-inset-left, 0px));
+}
+header.hero { margin-bottom: 48px; }
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-family: var(--num);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+h1 {
+  font-size: clamp(32px, 5vw, 44px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 10px;
+}
+.tag { color: var(--accent); }
+.lede {
+  color: var(--ink-muted);
+  font-size: clamp(15px, 1.6vw, 17px);
+  max-width: 52ch;
+  margin: 0;
+}
+section + section { margin-top: 48px; }
+h2 {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-family: var(--num);
+  font-weight: 500;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.p-card {
+  display: block;
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.p-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.p-card .code {
+  font-family: var(--num);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.p-card h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.p-card p {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.p-card .meta {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-family: var(--num);
+  font-variant-numeric: tabular-nums;
+}
+footer.foot {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+footer.foot a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <div class="eyebrow">Knowledge Base</div>
+    <h1>achitsak<span class="tag">.</span>knowledge</h1>
+    <p class="lede">คลังบทวิเคราะห์ ข้อมูล และ market research แยกตาม project</p>
+  </header>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="projects">
+      <a href="ATRX/" class="p-card">
+        <div class="code">ATRX</div>
+        <h3>Market Research &amp; Business Analysis</h3>
+        <p>บทวิเคราะห์ตลาด เซ้งกิจการ ประกาศซื้อขาย และข้อมูลธุรกิจ SME ในไทย</p>
+        <span class="meta">1 รายงาน · อัปเดตล่าสุด 2026-11-25</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div>© achitsak-abgroup · Source: <a href="https://github.com/achitsak-abgroup/achitsak-abgroup.github.io" target="_blank" rel="noopener">github.com/achitsak-abgroup/achitsak-abgroup.github.io</a></div>
+  </footer>
+</main>
+</body>
+</html>
