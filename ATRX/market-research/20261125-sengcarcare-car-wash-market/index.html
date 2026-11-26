@@ -339,6 +339,121 @@ td.pump-cell .dash { color: var(--ink-soft); font-size: 12px; }
 .method strong { color: var(--ink); }
 .method ul { margin: 8px 0 0; padding-left: 20px; }
 .method li { margin-bottom: 4px; }
+
+/* Starring + per-row notes */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.toolbar .hint {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.5;
+  max-width: 68ch;
+}
+.filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.filter-toggle:hover { border-color: var(--accent); }
+.filter-toggle[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.filter-toggle .count {
+  font-family: var(--num);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+.filter-toggle[aria-pressed="true"] .count { color: var(--accent-ink); }
+.filter-toggle .star-icon { color: var(--warn); font-size: 14px; }
+
+table.has-tracker { min-width: 1020px; }
+th.star-col, td.star-cell {
+  width: 32px;
+  padding: 6px 2px 6px 10px;
+  text-align: center;
+}
+th.note-col { min-width: 180px; }
+td.note-cell {
+  min-width: 180px;
+  max-width: 300px;
+  padding: 6px 10px 6px 12px;
+}
+.star-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink-soft);
+  transition: color 0.15s, transform 0.1s;
+}
+.star-btn:hover { color: var(--warn); transform: scale(1.1); }
+.star-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.star-btn[aria-pressed="true"] { color: var(--warn); }
+tr.row-starred td { background: color-mix(in srgb, var(--warn) 8%, transparent); }
+tr.row-starred:hover td { background: color-mix(in srgb, var(--warn) 14%, var(--surface-sub)); }
+
+.note-input {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--th);
+  font-size: 12.5px;
+  line-height: 1.45;
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 28px;
+  max-height: 160px;
+  box-sizing: border-box;
+  display: block;
+}
+.note-input::placeholder { color: var(--ink-soft); font-style: italic; }
+.note-input:hover {
+  border-color: var(--border);
+  background: var(--surface);
+}
+.note-input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  outline: none;
+}
+.note-input.has-value {
+  border-color: var(--border);
+  background: var(--surface-sub);
+}
+@supports (field-sizing: content) {
+  .note-input { field-sizing: content; }
+}
+
+tr.row-hidden { display: none; }
+.empty-state {
+  padding: 24px;
+  text-align: center;
+  color: var(--ink-muted);
+  font-size: 13px;
+}
 </style>
 
 <div class="page">
@@ -465,6 +580,14 @@ td.pump-cell .dash { color: var(--ink-soft); font-size: 12px; }
       <h2>ตารางประกาศทั้งหมด</h2>
       <div class="caption">เรียงจากใหม่สุด · คลิกเลข # เพื่อเปิดโพสต์ต้นทางใน Facebook</div>
     </header>
+    <div class="toolbar" id="tracker-bar" hidden>
+      <div class="hint">แตะ ☆ เพื่อติดดาวร้านที่น่าสน · พิมพ์ในช่องหมายเหตุเพื่อเก็บความเห็นของตัวเอง (บันทึกไว้ในเบราว์เซอร์เครื่องนี้)</div>
+      <button type="button" class="filter-toggle" id="filter-starred" aria-pressed="false">
+        <span class="star-icon" aria-hidden="true">★</span>
+        <span>เฉพาะที่ติดดาว</span>
+        <span class="count" id="star-count">0</span>
+      </button>
+    </div>
     <div class="table-wrap">
       <table>
         <thead>
@@ -532,4 +655,141 @@ td.pump-cell .dash { color: var(--ink-soft); font-size: 12px; }
       <li>ประกาศส่วนใหญ่โพสต์โดยแอดมินกลุ่ม (Suthep Suparngomut) ในฐานะนายหน้า ไม่ใช่เจ้าของร้านเอง จึงอาจไม่สะท้อนดีมานด์ของตลาดทั้งหมด</li>
     </ul>
   </div>
+</div>
+
+<script>
+(() => {
+  const STORAGE_KEY = 'sengcarcare-tracker-v1';
+  const load = () => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') || {}; }
+    catch { return {}; }
+  };
+  const save = (state) => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
+  };
+  const idFromHref = (href) => {
+    const m = href && href.match(/\/posts\/(\d+)/);
+    return m ? m[1] : null;
+  };
+
+  const table = document.querySelector('.table-wrap table');
+  if (!table) return;
+  const tbody = table.querySelector('tbody');
+  const headRow = table.querySelector('thead tr');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const state = load();
+
+  table.classList.add('has-tracker');
+
+  // Extend header
+  const thStar = document.createElement('th');
+  thStar.className = 'star-col';
+  thStar.setAttribute('aria-label', 'ติดดาว');
+  headRow.insertBefore(thStar, headRow.firstChild);
+  const thNote = document.createElement('th');
+  thNote.className = 'note-col';
+  thNote.textContent = 'หมายเหตุ';
+  headRow.appendChild(thNote);
+
+  const colCount = headRow.children.length;
+
+  // Empty state when filter hides everything
+  const emptyRow = document.createElement('tr');
+  emptyRow.id = 'tracker-empty';
+  emptyRow.hidden = true;
+  const emptyTd = document.createElement('td');
+  emptyTd.colSpan = colCount;
+  emptyTd.className = 'empty-state';
+  emptyTd.textContent = 'ยังไม่มีรายการที่ติดดาว — กด ☆ ในแถวใดก็ได้เพื่อเพิ่มเข้ารายการ';
+  emptyRow.appendChild(emptyTd);
+  tbody.appendChild(emptyRow);
+
+  const starCountEl = document.getElementById('star-count');
+  const filterBtn = document.getElementById('filter-starred');
+  const toolbar = document.getElementById('tracker-bar');
+  toolbar.hidden = false;
+  let filterOn = false;
+
+  const refreshCount = () => {
+    const n = rows.reduce((a, tr) => a + (tr.classList.contains('row-starred') ? 1 : 0), 0);
+    starCountEl.textContent = String(n);
+  };
+
+  const applyFilter = () => {
+    let visible = 0;
+    rows.forEach((tr) => {
+      const starred = tr.classList.contains('row-starred');
+      const hide = filterOn && !starred;
+      tr.classList.toggle('row-hidden', hide);
+      if (!hide) visible++;
+    });
+    emptyRow.hidden = !(filterOn && visible === 0);
+  };
+
+  rows.forEach((tr, idx) => {
+    const link = tr.querySelector('td.idx a');
+    const id = (link && idFromHref(link.href)) || `row-${idx}`;
+    const entry = state[id] || {};
+
+    // Star cell
+    const starTd = document.createElement('td');
+    starTd.className = 'star-cell';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'star-btn';
+    btn.setAttribute('aria-label', 'ติดดาวรายการนี้');
+    const paintStar = (on) => {
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.textContent = on ? '★' : '☆';
+      tr.classList.toggle('row-starred', !!on);
+    };
+    paintStar(!!entry.starred);
+    btn.addEventListener('click', () => {
+      const next = !(state[id] && state[id].starred);
+      state[id] = { ...(state[id] || {}), starred: next };
+      if (!next && !(state[id].note && state[id].note.length)) delete state[id];
+      paintStar(next);
+      save(state);
+      refreshCount();
+      applyFilter();
+    });
+    starTd.appendChild(btn);
+    tr.insertBefore(starTd, tr.firstChild);
+
+    // Note cell
+    const noteTd = document.createElement('td');
+    noteTd.className = 'note-cell';
+    const ta = document.createElement('textarea');
+    ta.className = 'note-input';
+    ta.rows = 1;
+    ta.placeholder = 'เพิ่มหมายเหตุ…';
+    ta.setAttribute('aria-label', 'หมายเหตุสำหรับรายการนี้');
+    ta.value = entry.note || '';
+    if (ta.value) ta.classList.add('has-value');
+    const persistNote = () => {
+      const v = ta.value.trim();
+      const cur = state[id] || {};
+      if (!v && !cur.starred) {
+        delete state[id];
+      } else {
+        state[id] = { ...cur, note: v };
+      }
+      ta.classList.toggle('has-value', !!v);
+      save(state);
+    };
+    ta.addEventListener('input', () => ta.classList.toggle('has-value', !!ta.value.trim()));
+    ta.addEventListener('blur', persistNote);
+    noteTd.appendChild(ta);
+    tr.appendChild(noteTd);
+  });
+
+  filterBtn.addEventListener('click', () => {
+    filterOn = !filterOn;
+    filterBtn.setAttribute('aria-pressed', filterOn ? 'true' : 'false');
+    applyFilter();
+  });
+
+  refreshCount();
+})();
+</script>
 </div>
