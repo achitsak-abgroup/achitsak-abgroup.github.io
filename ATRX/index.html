@@ -3,135 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ATRX — Market Research · achitsakp</title>
-<meta name="description" content="บทวิเคราะห์ตลาดและข้อมูลธุรกิจ SME ไทย">
+<title>ATRX · AB T-REX Car Wash · achitsak.knowledge</title>
+<meta name="description" content="ATRX (AB T-REX Car Wash) — market research, predecessors survey, business analysis">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ATRX — Market Research">
-<meta property="og:description" content="บทวิเคราะห์ตลาดและข้อมูลธุรกิจ SME ไทย">
+<meta property="og:title" content="ATRX · AB T-REX Car Wash">
 <meta property="og:locale" content="th_TH">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%232a4a73'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-family='sans-serif' font-size='40' font-weight='700' fill='white'%3EATRX%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-<style>
-:root {
-  --bg: #faf9f6; --surface: #ffffff; --surface-sub: #f4f2ec; --border: #e4e1d8;
-  --ink: #141414; --ink-muted: #6b6963; --ink-soft: #908d85;
-  --accent: #2a4a73; --accent-soft: #e8edf3;
-  color-scheme: light;
-  --th: 'IBM Plex Sans Thai', ui-sans-serif, system-ui, sans-serif;
-  --num: 'Inter', ui-sans-serif, system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #141412; --surface: #1d1c1a; --surface-sub: #262521; --border: #35332e;
-    --ink: #f1efe9; --ink-muted: #a6a39a; --ink-soft: #7a7770;
-    --accent: #88a3c9; --accent-soft: #223348; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #141412; --surface: #1d1c1a; --surface-sub: #262521; --border: #35332e;
-  --ink: #f1efe9; --ink-muted: #a6a39a; --ink-soft: #7a7770;
-  --accent: #88a3c9; --accent-soft: #223348; color-scheme: dark;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0; background: var(--bg); color: var(--ink);
-  font-family: var(--th); font-size: 15px; line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-.page {
-  max-width: 880px; margin: 0 auto;
-  padding: clamp(32px, 6vw, 64px) max(20px, env(safe-area-inset-left, 0px));
-}
-.breadcrumb {
-  font-family: var(--num); font-size: 12.5px; letter-spacing: 0.05em;
-  color: var(--ink-soft); margin-bottom: 20px;
-}
-.breadcrumb a { color: var(--accent); text-decoration: none; }
-.breadcrumb a:hover { text-decoration: underline; }
-.breadcrumb .sep { margin: 0 8px; color: var(--ink-soft); }
-header.hero { margin-bottom: 48px; }
-.eyebrow {
-  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--accent); font-family: var(--num); font-weight: 600;
-  margin-bottom: 10px;
-}
-h1 {
-  font-size: clamp(30px, 4.5vw, 40px); line-height: 1.15;
-  font-weight: 600; letter-spacing: -0.015em; margin: 0 0 10px;
-}
-.lede {
-  color: var(--ink-muted); font-size: clamp(15px, 1.6vw, 17px);
-  max-width: 52ch; margin: 0;
-}
-section + section { margin-top: 48px; }
-h2 {
-  font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--ink-soft); font-family: var(--num); font-weight: 500;
-  margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
-}
-.reports { display: flex; flex-direction: column; gap: 10px; }
-.r-card {
-  display: grid;
-  grid-template-columns: 120px 1fr auto;
-  gap: 20px;
-  align-items: baseline;
-  padding: 18px 22px;
-  border: 1px solid var(--border); border-radius: 10px;
-  background: var(--surface);
-  text-decoration: none; color: inherit;
-  transition: border-color 0.15s, transform 0.15s;
-}
-.r-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-.r-card .date {
-  font-family: var(--num); font-variant-numeric: tabular-nums;
-  font-size: 13px; color: var(--ink-soft); font-weight: 500;
-}
-.r-card .body { min-width: 0; }
-.r-card h3 {
-  margin: 0 0 4px; font-size: 16px; font-weight: 600;
-  color: var(--ink); line-height: 1.35;
-}
-.r-card p {
-  margin: 0; font-size: 13.5px; color: var(--ink-muted); line-height: 1.5;
-}
-.r-card .arrow {
-  color: var(--accent); font-family: var(--num);
-  font-size: 18px; font-weight: 500;
-}
-@media (max-width: 560px) {
-  .r-card { grid-template-columns: 1fr auto; gap: 8px 16px; }
-  .r-card .date { grid-column: 1 / -1; font-size: 12px; }
-  .r-card .body { grid-column: 1; }
-  .r-card .arrow { grid-column: 2; align-self: center; }
-}
-footer.foot {
-  margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border);
-  font-size: 12.5px; color: var(--ink-soft);
-}
-footer.foot a { color: var(--accent); text-decoration: none; }
-footer.foot a:hover { text-decoration: underline; }
-</style>
+<link rel="stylesheet" href="/assets/kb.css">
 </head>
 <body>
 <main class="page">
-  <nav class="breadcrumb"><a href="../">achitsakp</a><span class="sep">/</span>ATRX</nav>
+  <nav class="breadcrumb">
+    <a href="../">achitsak.knowledge</a><span class="sep">/</span>
+    ATRX
+  </nav>
   <header class="hero">
     <div class="eyebrow">ATRX</div>
-    <h1>Market Research &amp; Business Analysis</h1>
-    <p class="lede">บทวิเคราะห์ตลาด เซ้งกิจการ ประกาศซื้อขาย และข้อมูลธุรกิจ SME ในไทย — เก็บจากแหล่งข้อมูลสาธารณะและวิเคราะห์เป็นเชิงสถิติ</p>
+    <h1>AB T-REX Car Wash</h1>
+    <p class="lede">Business analysis, market research และ predecessors survey สำหรับโครงการคาร์แคร์เครื่องอัตโนมัติของ AB Group</p>
   </header>
 
   <section>
-    <h2>รายงาน</h2>
-    <div class="reports">
-      <a href="20261125-sengcarcare-car-wash-market/" class="r-card">
-        <div class="date">2026-11-25</div>
-        <div class="body">
-          <h3>ตลาดเซ้งคาร์แคร์ไทย — 6 เดือน</h3>
-          <p>37 ประกาศจากกลุ่ม Facebook สาธารณะ · ราคา ทำเล ปั๊ม · ร้านในปั๊มมี premium เกือบ 2 เท่า</p>
-        </div>
-        <div class="arrow">→</div>
+    <h2>Projects</h2>
+    <div class="projects">
+      <a href="market-research/" class="p-card">
+        <div class="code">MARKET-RESEARCH</div>
+        <h3>Market Research</h3>
+        <p>วิเคราะห์ตลาดและประกาศซื้อขายคาร์แคร์ในไทย ราคาอ้างอิง ทำเล</p>
+        <span class="meta">1 รายงาน · อัปเดต 2026-11-25</span>
+      </a>
+      <a href="predecessors-survey/" class="p-card">
+        <div class="code">PREDECESSORS-SURVEY</div>
+        <h3>Predecessors Survey</h3>
+        <p>สำรวจคู่แข่งและ reference business ของคาร์แคร์เครื่องอัตโนมัติ</p>
+        <span class="meta">1 รายงาน · อัปเดต 2026-11-25</span>
       </a>
     </div>
   </section>

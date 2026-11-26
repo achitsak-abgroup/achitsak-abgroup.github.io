@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuickWash Field Observation — 2026-11-25 · ATRX</title>
+<meta name="description" content="สำรวจภาคสนาม QuickWash สาขา บางจาก ปิ่นเกล้า 25 พ.ย. 2026 — เพื่อเปรียบเทียบ operational model กับ T-REX Car Wash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QuickWash Field Observation — 25 พ.ย. 2026">
+<meta property="og:description" content="7 รถ · 80 นาที · machine cycle 7 นาที · Vehicle #5 ใช้เวลารวม 36 นาที">
+<meta property="og:locale" content="th_TH">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%232a4a73'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-family='sans-serif' font-size='40' font-weight='700' fill='white'%3EQW%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #faf9f6; --surface: #ffffff; --surface-sub: #f4f2ec; --border: #e4e1d8;
+  --ink: #141414; --ink-muted: #6b6963; --ink-soft: #908d85;
+  --accent: #2a4a73; --accent-ink: #1a3156; --accent-soft: #e8edf3;
+  --bar: #4a6ea0; --bar-dim: #b8c5d8;
+  --warn: #b16a2a; --warn-soft: #f3ead9;
+  --good: #3b6e3b;
+  --rail: #d9d5c8;
+  color-scheme: light;
+  --th: 'IBM Plex Sans Thai', ui-sans-serif, system-ui, sans-serif;
+  --num: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141412; --surface: #1d1c1a; --surface-sub: #262521; --border: #35332e;
+    --ink: #f1efe9; --ink-muted: #a6a39a; --ink-soft: #7a7770;
+    --accent: #88a3c9; --accent-ink: #b3c4de; --accent-soft: #223348;
+    --bar: #7a99c4; --bar-dim: #3e4a5c;
+    --warn: #d99960; --warn-soft: #35291a;
+    --good: #6ba06b;
+    --rail: #3d3a34;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141412; --surface: #1d1c1a; --surface-sub: #262521; --border: #35332e;
+  --ink: #f1efe9; --ink-muted: #a6a39a; --ink-soft: #7a7770;
+  --accent: #88a3c9; --accent-ink: #b3c4de; --accent-soft: #223348;
+  --bar: #7a99c4; --bar-dim: #3e4a5c;
+  --warn: #d99960; --warn-soft: #35291a;
+  --good: #6ba06b;
+  --rail: #3d3a34;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--th); font-size: 15px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1180px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  padding-block: clamp(28px, 5vw, 56px);
+}
+.breadcrumb {
+  font-family: var(--num); font-size: 12.5px; letter-spacing: 0.05em;
+  color: var(--ink-soft); margin-bottom: 20px;
+}
+.breadcrumb a { color: var(--accent); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { margin: 0 8px; color: var(--ink-soft); }
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(26px, 4vw, 36px); line-height: 1.2; }
+h2 { font-size: clamp(18px, 2.4vw, 22px); line-height: 1.3; margin-bottom: 12px; }
+h3 { font-size: 14px; color: var(--ink-muted); font-weight: 500; letter-spacing: 0.02em; }
+.num { font-family: var(--num); font-variant-numeric: tabular-nums; }
+
+/* Hero */
+.hero { margin-bottom: 40px; }
+.eyebrow {
+  font-family: var(--num); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-soft); font-weight: 500;
+  margin-bottom: 10px;
+}
+.eyebrow .src-link { color: var(--accent); text-decoration: none; font-weight: 500; letter-spacing: 0.02em; }
+.eyebrow .src-link:hover { text-decoration: underline; }
+.lede {
+  max-width: 68ch; color: var(--ink-muted); margin-top: 14px;
+  font-size: clamp(14.5px, 1.5vw, 16px);
+}
+
+/* Stats */
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1px; background: var(--border); border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden; margin: 40px 0;
+}
+.stat { background: var(--surface); padding: 20px 22px; min-width: 0; }
+.stat .label {
+  font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft); font-family: var(--num); font-weight: 500;
+  margin-bottom: 8px;
+}
+.stat .value {
+  font-family: var(--num); font-variant-numeric: tabular-nums;
+  font-size: clamp(22px, 2.6vw, 28px); font-weight: 600; line-height: 1.1;
+  color: var(--ink);
+}
+.stat .sub {
+  font-size: 12px; color: var(--ink-soft); margin-top: 4px;
+  font-family: var(--num); font-variant-numeric: tabular-nums;
+}
+
+/* Section + 2-col */
+section { margin-top: 48px; }
+section header { margin-bottom: 20px; }
+.caption {
+  font-size: 12.5px; color: var(--ink-soft); margin-top: 4px;
+}
+.two-col {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 24px;
+}
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 22px 24px;
+}
+
+/* Location */
+.loc-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px;
+}
+.loc-grid > div { min-width: 0; }
+.loc-grid img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--border); border-radius: 8px; background: var(--surface);
+}
+.loc-grid .cap {
+  font-size: 11.5px; color: var(--ink-soft); margin-top: 6px;
+  font-family: var(--num);
+}
+.loc-info {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 20px 22px; margin-top: 16px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px 24px;
+}
+.loc-info dt {
+  font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink-soft); font-family: var(--num); font-weight: 500; margin-bottom: 3px;
+}
+.loc-info dd { margin: 0; font-size: 14px; color: var(--ink); }
+.loc-info dd a { color: var(--accent); text-decoration: none; }
+.loc-info dd a:hover { text-decoration: underline; }
+@media (max-width: 700px) { .loc-grid { grid-template-columns: 1fr; } }
+
+/* Process flow */
+.process {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+.step {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px 18px; position: relative;
+}
+.step .n {
+  font-family: var(--num); font-size: 12px; color: var(--accent);
+  font-weight: 600; letter-spacing: 0.05em; margin-bottom: 6px;
+}
+.step .t {
+  font-size: 13.5px; color: var(--ink); font-weight: 500; line-height: 1.4;
+}
+
+/* Timeline — Vehicle #5 breakdown */
+.v5-breakdown {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 22px 24px;
+}
+.v5-svg { width: 100%; height: auto; display: block; font-family: var(--num); font-variant-numeric: tabular-nums; }
+.v5-svg .seg { stroke: var(--surface); stroke-width: 1; }
+.v5-svg .seg.wait { fill: var(--rail); }
+.v5-svg .seg.prewash { fill: var(--bar-dim); }
+.v5-svg .seg.machine { fill: var(--warn); }
+.v5-svg .seg.post { fill: var(--bar); }
+.v5-svg .seg-label { fill: var(--ink); font-size: 11px; font-weight: 500; }
+.v5-svg .seg-dur { fill: #ffffff; font-size: 13px; font-weight: 600; }
+.v5-svg .axis { stroke: var(--border); stroke-width: 1; }
+.v5-svg .tick { fill: var(--ink-soft); font-size: 10.5px; }
+.v5-legend {
+  display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 14px;
+  font-size: 12px; color: var(--ink-muted);
+}
+.v5-legend .sw {
+  display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+  margin-right: 6px; vertical-align: middle;
+}
+
+/* Arrival timeline (horizontal) */
+.arr-svg { width: 100%; height: auto; display: block; font-family: var(--num); font-variant-numeric: tabular-nums; }
+.arr-svg .axis { stroke: var(--border); stroke-width: 1; }
+.arr-svg .tick { fill: var(--ink-soft); font-size: 10.5px; }
+.arr-svg .dot { fill: var(--bar); }
+.arr-svg .dot.wait { fill: var(--warn); }
+.arr-svg .dot-label { fill: var(--ink-muted); font-size: 10.5px; }
+.arr-svg .vlabel { fill: var(--ink); font-size: 11.5px; font-weight: 500; }
+
+/* Table */
+.table-wrap {
+  border: 1px solid var(--border); border-radius: 8px;
+  overflow-x: auto; background: var(--surface);
+}
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 760px; }
+thead th {
+  text-align: left; font-weight: 500; color: var(--ink-muted);
+  padding: 10px 12px; background: var(--surface-sub);
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+  font-size: 12px; letter-spacing: 0.02em; position: sticky; top: 0;
+}
+tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) td { background: var(--surface-sub); }
+tbody tr.highlight td { background: var(--warn-soft); }
+td.num, th.num {
+  font-family: var(--num); font-variant-numeric: tabular-nums;
+  text-align: right; white-space: nowrap;
+}
+.pill {
+  display: inline-block; font-size: 11px; padding: 1px 7px;
+  border-radius: 10px; font-family: var(--num); font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.pill.wait { background: var(--warn-soft); color: var(--warn); }
+.pill.nowait { background: var(--accent-soft); color: var(--accent-ink); }
+.pill.queue { background: var(--rail); color: var(--ink-muted); }
+
+/* Highlighted callout (T-REX recommendation) */
+.callout {
+  border: 1px solid var(--accent); border-left-width: 4px;
+  border-radius: 6px; padding: 18px 22px;
+  background: var(--accent-soft);
+}
+.callout .tag {
+  display: inline-block; font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent-ink);
+  font-family: var(--num); font-weight: 600; margin-bottom: 6px;
+}
+.callout h3 { color: var(--ink); font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.callout p { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.55; }
+
+/* Observations grid */
+.obs-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.obs {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px 18px;
+}
+.obs .label {
+  font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink-soft); font-family: var(--num); font-weight: 500;
+  margin-bottom: 6px;
+}
+.obs .val {
+  font-size: 15px; color: var(--ink); font-weight: 500; margin-bottom: 4px;
+}
+.obs .note { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; }
+
+/* Q&A list */
+.qa {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 22px 24px;
+}
+.qa ol { margin: 0; padding-left: 20px; }
+.qa li { margin-bottom: 10px; font-size: 14px; color: var(--ink); line-height: 1.55; }
+.qa li:last-child { margin-bottom: 0; }
+
+/* Methodology */
+.method {
+  margin-top: 56px; padding: 20px 24px;
+  background: var(--surface-sub); border: 1px solid var(--border); border-radius: 8px;
+  font-size: 12.5px; color: var(--ink-muted); line-height: 1.6;
+}
+.method strong { color: var(--ink); font-weight: 600; }
+
+/* Footer */
+footer.foot {
+  margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border);
+  font-size: 12.5px; color: var(--ink-soft);
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+footer.foot a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<main class="page">
+  <nav class="breadcrumb">
+    <a href="../../../">achitsak.knowledge</a><span class="sep">/</span>
+    <a href="../../">ATRX</a><span class="sep">/</span>
+    <a href="../">Predecessors Survey</a><span class="sep">/</span>
+    QuickWash · 2026-11-25
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow">
+      ภาคสนาม · PREDECESSORS SURVEY
+      &nbsp;·&nbsp;
+      <a href="https://maps.app.goo.gl/R2iHbVt47EH5y2TN9" target="_blank" rel="noopener" class="src-link">QuickWash สาขาบางจาก ปิ่นเกล้า ↗</a>
+      &nbsp;·&nbsp;
+      25 พ.ย. 2026, 15:18–16:38 (80 นาที)
+    </div>
+    <h1>QuickWash Field Observation</h1>
+    <p class="lede">
+      สำรวจเพื่อศึกษา operational model ของคาร์แคร์เครื่องอัตโนมัติในไทย ใช้เปรียบเทียบกับ T-REX Car Wash
+      ในแง่ throughput, process flow, staffing, equipment และข้อควรระวังด้าน construction
+      — เป็น short sample observation ไม่ใช่ capacity study เชิงสถิติ
+    </p>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="label">รถสังเกต</div>
+      <div class="value">7</div>
+      <div class="sub">คัน · 80 นาที</div>
+    </div>
+    <div class="stat">
+      <div class="label">Machine cycle</div>
+      <div class="value">7</div>
+      <div class="sub">นาที · ISTOBAL</div>
+    </div>
+    <div class="stat">
+      <div class="label">Vehicle #5 total</div>
+      <div class="value">36</div>
+      <div class="sub">นาที (คันที่นานที่สุด)</div>
+    </div>
+    <div class="stat">
+      <div class="label">พนักงาน</div>
+      <div class="value">3–4</div>
+      <div class="sub">คน (ประเมิน)</div>
+    </div>
+    <div class="stat">
+      <div class="label">น้ำสำรอง</div>
+      <div class="value">6,000</div>
+      <div class="sub">ลิตร · 2 ถัง × 3,000L</div>
+    </div>
+  </div>
+
+  <section>
+    <header>
+      <h2>ที่ตั้ง</h2>
+      <div class="caption">บริเวณถนนบรมราชชนนี ใต้ทางด่วนพระราม 2 · ใกล้มหาวิทยาลัยศิลปากร ตลิ่งชัน</div>
+    </header>
+    <div class="loc-grid">
+      <div>
+        <img src="assets/aerial-wide.jpg" alt="ภาพมุมสูงบริเวณ QuickWash และย่านรอบ">
+        <div class="cap">Google Maps · มุมสูง: QuickWash อยู่ติดถนนบรมฯ ขาเข้าเมือง ใต้ทางด่วน</div>
+      </div>
+      <div>
+        <img src="assets/aerial-close.jpg" alt="ภาพมุมสูงใกล้ QuickWash เห็นแนวหลังคา">
+        <div class="cap">Google Maps · ซูมเข้า: เห็นแนวหลังคาคลุมช่องจอด (โซลาร์เซลล์) ยาวตามแนวที่ดิน</div>
+      </div>
+    </div>
+    <div style="margin-top:16px">
+      <img src="assets/streetview.png" alt="Street View ของหน้าร้าน QuickWash" style="display:block;width:100%;max-width:720px;margin:0 auto;border:1px solid var(--border);border-radius:8px">
+      <div class="cap" style="text-align:center">Street View · หน้าร้าน QuickWash (บันทึกจาก Google Maps)</div>
+    </div>
+    <dl class="loc-info">
+      <div><dt>ที่อยู่</dt><dd>24, 28 ถนนบรมราชชนนี ตลิ่งชัน กรุงเทพฯ 10170</dd></div>
+      <div><dt>พิกัด</dt><dd class="num">13.7846364, 100.4615916</dd></div>
+      <div><dt>Rating</dt><dd>4.4 ★ (131 reviews)</dd></div>
+      <div><dt>เวลาเปิด</dt><dd>ปิด 20:00</dd></div>
+      <div><dt>เว็บไซต์</dt><dd><a href="https://quickwashthailand.com" target="_blank" rel="noopener">quickwashthailand.com</a></dd></div>
+      <div><dt>โทร</dt><dd class="num">092 281 2771</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <header>
+      <h2>Process Flow</h2>
+      <div class="caption">กระบวนการที่สังเกตได้ (7 ขั้นตอน) · ยังไม่ confirm กับ SOP ของร้าน</div>
+    </header>
+    <div class="process">
+      <div class="step"><div class="n">1</div><div class="t">รถมาถึง / reception</div></div>
+      <div class="step"><div class="n">2</div><div class="t">พนักงานคุย เลือก service/price (ถ้าจำเป็น)</div></div>
+      <div class="step"><div class="n">3</div><div class="t">Pre-wash ฉีดน้ำแรงดันสูงรอบคัน</div></div>
+      <div class="step"><div class="n">4</div><div class="t">จัดรถเข้าตำแหน่งเครื่อง</div></div>
+      <div class="step"><div class="n">5</div><div class="t">เครื่องอัตโนมัติล้าง + เป่าแห้ง</div></div>
+      <div class="step"><div class="n">6</div><div class="t">พนักงานเช็ด/ตบแต่ง (finishing)</div></div>
+      <div class="step"><div class="n">7</div><div class="t">รถออกจากร้าน</div></div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>Vehicle #5 · การแบ่งเวลา 36 นาที</h2>
+      <div class="caption">Ford EcoSport สีแดง · 16:02 arrival → 16:38 departure · เป็นคันเดียวที่เก็บ timestamps ครบ 4 phases</div>
+    </header>
+    <div class="v5-breakdown">
+      <svg class="v5-svg" viewBox="0 0 740 150" role="img" aria-label="แบ่งเวลา 36 นาทีของ Vehicle #5">
+        <!-- scale: 36 min across 700px (x=20 to x=720), 1 min ≈ 19.4px -->
+        <!-- Bar segments at y=30, height=50 -->
+        <!-- Wait + reception: 7 min (16:02-16:09) -->
+        <rect class="seg wait" x="20" y="30" width="136" height="50"/>
+        <text class="seg-dur" x="88" y="61" text-anchor="middle">7 นาที</text>
+        <!-- Pre-wash: 7 min (16:09-16:16) -->
+        <rect class="seg prewash" x="156" y="30" width="136" height="50"/>
+        <text class="seg-dur" x="224" y="61" text-anchor="middle" style="fill:#141414">7 นาที</text>
+        <!-- Machine: 7 min (16:16-16:23) -->
+        <rect class="seg machine" x="292" y="30" width="136" height="50"/>
+        <text class="seg-dur" x="360" y="61" text-anchor="middle">7 นาที</text>
+        <!-- Post-machine: 15 min (16:23-16:38) -->
+        <rect class="seg post" x="428" y="30" width="292" height="50"/>
+        <text class="seg-dur" x="574" y="61" text-anchor="middle">15 นาที</text>
+        <!-- Time ticks -->
+        <line class="axis" x1="20" y1="90" x2="720" y2="90"/>
+        <text class="tick" x="20" y="105" text-anchor="middle">16:02</text>
+        <text class="tick" x="156" y="105" text-anchor="middle">16:09</text>
+        <text class="tick" x="292" y="105" text-anchor="middle">16:16</text>
+        <text class="tick" x="428" y="105" text-anchor="middle">16:23</text>
+        <text class="tick" x="720" y="105" text-anchor="middle">16:38</text>
+        <!-- Phase labels above -->
+        <text class="seg-label" x="88" y="22" text-anchor="middle">รอ + คุย</text>
+        <text class="seg-label" x="224" y="22" text-anchor="middle">Pre-wash</text>
+        <text class="seg-label" x="360" y="22" text-anchor="middle">Machine</text>
+        <text class="seg-label" x="574" y="22" text-anchor="middle">Finishing (ไม่แยก task)</text>
+      </svg>
+      <div class="v5-legend">
+        <span><span class="sw" style="background:var(--rail)"></span>รอก่อนเริ่ม (overlap กับคุย service ~3 นาที)</span>
+        <span><span class="sw" style="background:var(--bar-dim)"></span>Pre-wash (manual ฉีดน้ำ)</span>
+        <span><span class="sw" style="background:var(--warn)"></span>Machine cycle (ISTOBAL)</span>
+        <span><span class="sw" style="background:var(--bar)"></span>Post-machine finishing (เช็ด/ตบแต่ง)</span>
+      </div>
+      <p style="margin-top:16px;font-size:12.5px;color:var(--ink-soft);line-height:1.6">
+        <strong style="color:var(--ink)">ข้อสังเกต:</strong>
+        ช่วง 15 นาทีท้ายไม่ได้แยก task ย่อย (เช็ด/ล้อ/touch-up) — เป็น elapsed time ไม่ใช่ labour time
+        ในขณะเดียวกัน Vehicle #4 ใช้ post-machine finishing เพียง 3 นาที แสดงว่าช่วงนี้ของ #5 อาจรวมเวลารอ staff หรือตบแต่งหนักกว่าเฉลี่ย
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>Vehicle Log</h2>
+      <div class="caption">7 คัน ตามลำดับมาถึง · เฉพาะ #4 กับ #5 ที่บันทึก departure · #7 ยัง queue ตอนจบการสังเกต</div>
+    </header>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="num">#</th>
+            <th class="num">มาถึง</th>
+            <th>รถ</th>
+            <th>สี</th>
+            <th>ประเภท</th>
+            <th>อายุประมาณ</th>
+            <th>สถานะ queue</th>
+            <th class="num">ออก</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td><td class="num">15:18</td><td>Toyota Vios</td><td>ดำ</td><td>Sedan</td><td>10+ ปี</td>
+            <td><span class="pill nowait">ไม่รอ</span></td><td class="num">—</td>
+          </tr>
+          <tr>
+            <td class="num">2</td><td class="num">15:27</td><td>Mitsubishi Xpander</td><td>ขาว</td><td>MPV</td><td>—</td>
+            <td><span class="pill nowait">ไม่รอ</span></td><td class="num">—</td>
+          </tr>
+          <tr>
+            <td class="num">3</td><td class="num">15:44</td><td>Nissan Kicks</td><td>ขาว</td><td>SUV</td><td>รุ่นเก่า</td>
+            <td><span class="pill nowait">ไม่รอ</span></td><td class="num">—</td>
+          </tr>
+          <tr>
+            <td class="num">4</td><td class="num">15:55</td><td>Mazda CX-5</td><td>ขาว</td><td>SUV</td><td>~5 ปี</td>
+            <td><span class="pill nowait">ไม่รอ</span></td><td class="num">16:19</td>
+          </tr>
+          <tr class="highlight">
+            <td class="num">5</td><td class="num">16:02</td><td>Ford EcoSport</td><td>แดง</td><td>Mini SUV</td><td>10+ ปี</td>
+            <td><span class="pill wait">รอ · คุย 3 นาที</span></td><td class="num">16:38</td>
+          </tr>
+          <tr>
+            <td class="num">6</td><td class="num">16:32</td><td>Toyota Vios</td><td>ขาว</td><td>Sedan</td><td>5–10 ปี</td>
+            <td><span class="pill nowait">ไม่รอ</span></td><td class="num">—</td>
+          </tr>
+          <tr>
+            <td class="num">7</td><td class="num">16:34</td><td>Toyota Corolla Cross</td><td>เทาเข้ม</td><td>Crossover SUV</td><td>3–5 ปี</td>
+            <td><span class="pill queue">queue #1</span></td><td class="num">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>Arrivals Timeline</h2>
+      <div class="caption">ลำดับรถ 7 คันบน timeline 15:18–16:38 · สีส้มคือรถที่รอ</div>
+    </header>
+    <div class="v5-breakdown">
+      <svg class="arr-svg" viewBox="0 0 740 130" role="img" aria-label="Arrivals timeline 7 vehicles">
+        <!-- x axis from 15:15 (x=20) to 16:40 (x=720); 85 min across 700px, 1 min ≈ 8.235px -->
+        <line class="axis" x1="20" y1="80" x2="720" y2="80"/>
+        <!-- Tick marks every 10 min -->
+        <g>
+          <line class="axis" x1="20" y1="75" x2="20" y2="85"/><text class="tick" x="20" y="100" text-anchor="middle">15:15</text>
+          <line class="axis" x1="103.5" y1="75" x2="103.5" y2="85"/><text class="tick" x="103.5" y="100" text-anchor="middle">15:25</text>
+          <line class="axis" x1="186.9" y1="75" x2="186.9" y2="85"/><text class="tick" x="186.9" y="100" text-anchor="middle">15:35</text>
+          <line class="axis" x1="270.3" y1="75" x2="270.3" y2="85"/><text class="tick" x="270.3" y="100" text-anchor="middle">15:45</text>
+          <line class="axis" x1="353.7" y1="75" x2="353.7" y2="85"/><text class="tick" x="353.7" y="100" text-anchor="middle">15:55</text>
+          <line class="axis" x1="437.1" y1="75" x2="437.1" y2="85"/><text class="tick" x="437.1" y="100" text-anchor="middle">16:05</text>
+          <line class="axis" x1="520.5" y1="75" x2="520.5" y2="85"/><text class="tick" x="520.5" y="100" text-anchor="middle">16:15</text>
+          <line class="axis" x1="603.9" y1="75" x2="603.9" y2="85"/><text class="tick" x="603.9" y="100" text-anchor="middle">16:25</text>
+          <line class="axis" x1="687.3" y1="75" x2="687.3" y2="85"/><text class="tick" x="687.3" y="100" text-anchor="middle">16:35</text>
+        </g>
+        <!-- Vehicle arrivals as dots -->
+        <!-- #1 15:18 = 15:15 + 3 min = x=20 + 3*8.235 = 44.7 -->
+        <circle class="dot" cx="44.7" cy="55" r="8"/><text class="vlabel" x="44.7" y="40" text-anchor="middle">#1</text>
+        <!-- #2 15:27 = 12 min from start = x=20 + 12*8.235 = 118.8 -->
+        <circle class="dot" cx="118.8" cy="55" r="8"/><text class="vlabel" x="118.8" y="40" text-anchor="middle">#2</text>
+        <!-- #3 15:44 = 29 min = x=20 + 29*8.235 = 258.8 -->
+        <circle class="dot" cx="258.8" cy="55" r="8"/><text class="vlabel" x="258.8" y="40" text-anchor="middle">#3</text>
+        <!-- #4 15:55 = 40 min = x=20 + 40*8.235 = 349.4 -->
+        <circle class="dot" cx="349.4" cy="55" r="8"/><text class="vlabel" x="349.4" y="40" text-anchor="middle">#4</text>
+        <!-- #5 16:02 = 47 min = x=20 + 47*8.235 = 407.0 (wait) -->
+        <circle class="dot wait" cx="407.0" cy="55" r="9"/><text class="vlabel" x="407.0" y="40" text-anchor="middle">#5</text>
+        <!-- #6 16:32 = 77 min = x=20 + 77*8.235 = 654.1 -->
+        <circle class="dot" cx="654.1" cy="55" r="8"/><text class="vlabel" x="654.1" y="40" text-anchor="middle">#6</text>
+        <!-- #7 16:34 = 79 min = x=20 + 79*8.235 = 670.6 (queue) -->
+        <circle class="dot wait" cx="670.6" cy="55" r="9"/><text class="vlabel" x="670.6" y="40" text-anchor="middle">#7</text>
+      </svg>
+      <p style="margin-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.6">
+        รถ #1–#4 เข้าห่างกัน 9–17 นาที ไม่มี wait · ช่วง #5–#7 ถี่ขึ้น (รถใหม่เข้ามาก่อน #5 เสร็จ) ทำให้เกิด queue
+        · 5.25 รถ/ชม. เป็น descriptive arrival rate ไม่ใช่ throughput จริง
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>Observations</h2>
+    </header>
+    <div class="obs-grid">
+      <div class="obs">
+        <div class="label">พนักงาน</div>
+        <div class="val">3–4 คน (ประเมิน)</div>
+        <div class="note">1 คนด้านหน้า (รับรถ + pre-wash + กดเครื่อง) · 2–3 คนด้านหลัง (finishing) · ยังไม่ confirm กับร้าน</div>
+      </div>
+      <div class="obs">
+        <div class="label">เครื่องล้าง</div>
+        <div class="val">ISTOBAL (Spain)</div>
+        <div class="note">ไม่ได้บันทึก model/serial · ควรถ่าย nameplate ครั้งหน้าเพื่อระบุ spec ชัด</div>
+      </div>
+      <div class="obs">
+        <div class="label">น้ำสำรอง</div>
+        <div class="val">2 ถัง × 3,000 L</div>
+        <div class="note">capacity ที่ร้านแจ้ง · ยังไม่ได้ measure usable volume, ระบบ recycle, หรือ consumption/คัน</div>
+      </div>
+      <div class="obs">
+        <div class="label">เครื่องแบบพนักงาน</div>
+        <div class="val">เสื้อ branded + กางเกงทั่วไป + รองเท้าแตะ</div>
+        <div class="note">ความเรียบร้อยโดยรวมดูไม่ค่อย professional (ประเมินเชิง subjective)</div>
+      </div>
+      <div class="obs">
+        <div class="label">การคุย service</div>
+        <div class="val">1 ใน 7 คัน ที่คุยก่อนล้าง</div>
+        <div class="note">อีก 6 คันไม่คุย — อาจเพราะเป็นลูกค้าเดิม หรืออ่านจากป้าย (hypothesis ไม่ยืนยัน)</div>
+      </div>
+      <div class="obs">
+        <div class="label">Popular Times</div>
+        <div class="val">"不如平时繁忙" (less busy)</div>
+        <div class="note">Google Maps ระบุช่วงนี้เบากว่าปกติ · ผู้สังเกตคาดว่าปกติอาจ 2–4 เท่า (ยังไม่ verify)</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>T-REX Design Recommendation</h2>
+    </header>
+    <div class="callout">
+      <div class="tag">Construction · Wall cladding</div>
+      <h3>ยกขอบล่างของผนัง metal sheet ขึ้น 10–15 ซม. จากพื้น</h3>
+      <p>
+        ที่ QuickWash สังเกตเห็น metal sheet ติดถึงพื้น มีโอกาสสะสมความชื้นและเกิดการกัดกร่อน (corrosion)
+        T-REX ควรยกขอบล่างขึ้น 10–15 ซม. จากพื้น + ใช้ base detail ที่ทนน้ำ เพื่อลดการสัมผัสน้ำโดยตรง
+        — เป็นข้อเสนอจาก visual observation ไม่ได้ยืนยันสาเหตุ corrosion ที่สังเกตเห็น
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>Open Questions · Follow-up Fieldwork</h2>
+    </header>
+    <div class="qa">
+      <ol>
+        <li><strong>Machine specs:</strong> ถ่าย nameplate ISTOBAL เพื่อระบุ model, configuration (rollover/gantry/tunnel), จำนวนแปรง, ระบบ drying</li>
+        <li><strong>Machine cycle breakdown:</strong> แยก start, wash phases, rinse, wax, drying start/end, machine release</li>
+        <li><strong>Bay utilization:</strong> รถแต่ละคันเข้า–ออก machine bay ตอนไหน · finishing area รองรับได้พร้อมกันกี่คัน</li>
+        <li><strong>Labour vs elapsed:</strong> แยก pre-wash, รอ machine, machine cycle, post-wash finishing, payment/exit ออกจากกัน</li>
+        <li><strong>Staffing:</strong> confirm จำนวน/role จาก shift จริง · ทำ multitask กันแค่ไหน</li>
+        <li><strong>Water system:</strong> tank type, usable volume, filtration, recycling, replenishment, consumption/คัน</li>
+        <li><strong>Queue pattern:</strong> queue ที่เห็นเป็น occasional หรือ typical · เก็บข้อมูลหลายช่วงเวลา/วัน</li>
+        <li><strong>Customer loyalty:</strong> สมาชิก/package/repeat workflow · อย่า infer จาก "ไม่คุย" อย่างเดียว</li>
+        <li><strong>Throughput:</strong> นับ completed vehicles ต่อชั่วโมง ต่อเนื่อง 1 วันเต็ม รวม peak + off-peak</li>
+      </ol>
+    </div>
+  </section>
+
+  <aside class="method">
+    <p>
+      <strong>Data quality conventions.</strong>
+      <strong>Observed:</strong> บันทึก/จับเวลาในสนามจริง ·
+      <strong>Estimated:</strong> ประเมินจากการมอง (staffing, อายุรถ) ·
+      <strong>Hypothesis:</strong> ตีความ ยังไม่ยืนยัน (repeat customer, สาเหตุ corrosion) ·
+      <strong>Unknown:</strong> ไม่ได้บันทึก (departure ส่วนใหญ่, exact model, task breakdown 15 นาทีท้ายของ #5)
+      — เวลาทั้งหมดเป็น Thailand local time (UTC+7), 25 พ.ย. 2026
+    </p>
+    <p style="margin-top:10px">
+      <strong>Caveat:</strong>
+      7 คัน / 80 นาที = 5.25 arrivals/hr เป็น descriptive rate เท่านั้น ไม่ใช่ throughput หรือ capacity
+      (sample สั้น, #7 ยัง queue, departure หลายคันไม่ได้บันทึก) ·
+      Vehicle #5 time breakdown เป็น elapsed interval ไม่ใช่ active labour time (3 นาทีคุย service อาจ overlap กับรอ)
+    </p>
+  </aside>
+
+  <footer class="foot">
+    <div><a href="../">← กลับหน้า Predecessors Survey</a>&nbsp;·&nbsp;<a href="../../">ATRX</a>&nbsp;·&nbsp;<a href="../../../">หน้าหลัก</a></div>
+  </footer>
+</main>
+</body>
+</html>
