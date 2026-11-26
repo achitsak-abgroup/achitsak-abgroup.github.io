@@ -22,7 +22,7 @@ achitsak-abgroup.github.io/
 │   │   ├── index.html                                list reports
 │   │   └── 20261125-sengcarcare-car-wash-market/
 │   │       └── index.html                            รายงาน
-│   └── predecessors-survey/
+│   └── market-leader-survey/
 │       ├── index.html
 │       └── 20261125-quickwash-field-observation/
 │           ├── index.html                            รายงาน
@@ -32,7 +32,7 @@ achitsak-abgroup.github.io/
 
 **กฎการตั้งชื่อ:**
 - BU: รหัส 4 ตัวอักษร (ABGV, ABBL, ATRX ฯลฯ) ตรงกับ internal BU code
-- Project: kebab-case อธิบายหัวเรื่อง เช่น `market-research`, `predecessors-survey`
+- Project: kebab-case อธิบายหัวเรื่อง เช่น `market-research`, `market-leader-survey`
 - Report: `YYYYMMDD-<topic-kebab-case>` เช่น `20261125-quickwash-field-observation`
 - URL ไม่ใช้ space และไม่ใช้ตัวอักษรไทย
 - รูปของ report เก็บใน `<report-folder>/assets/`

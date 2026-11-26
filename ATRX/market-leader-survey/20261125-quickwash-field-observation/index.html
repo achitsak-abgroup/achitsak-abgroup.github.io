@@ -294,13 +294,13 @@ footer.foot a:hover { text-decoration: underline; }
   <nav class="breadcrumb">
     <a href="../../../">achitsak.knowledge</a><span class="sep">/</span>
     <a href="../../">ATRX</a><span class="sep">/</span>
-    <a href="../">Predecessors Survey</a><span class="sep">/</span>
+    <a href="../">Market Leader Survey</a><span class="sep">/</span>
     QuickWash · 2026-11-25
   </nav>
 
   <header class="hero">
     <div class="eyebrow">
-      ภาคสนาม · PREDECESSORS SURVEY
+      ภาคสนาม · MARKET LEADER SURVEY
       &nbsp;·&nbsp;
       <a href="https://maps.app.goo.gl/R2iHbVt47EH5y2TN9" target="_blank" rel="noopener" class="src-link">QuickWash สาขาบางจาก ปิ่นเกล้า ↗</a>
       &nbsp;·&nbsp;
@@ -328,7 +328,7 @@ footer.foot a:hover { text-decoration: underline; }
     <div class="stat">
       <div class="label">Vehicle #5 total</div>
       <div class="value">36</div>
-      <div class="sub">นาที (คันที่นานที่สุด)</div>
+      <div class="sub">นาที · คันเดียวที่ timeline ครบ</div>
     </div>
     <div class="stat">
       <div class="label">พนักงาน</div>
@@ -427,18 +427,26 @@ footer.foot a:hover { text-decoration: underline; }
         <span><span class="sw" style="background:var(--warn)"></span>Machine cycle (ISTOBAL)</span>
         <span><span class="sw" style="background:var(--bar)"></span>Post-machine finishing (เช็ด/ตบแต่ง)</span>
       </div>
-      <p style="margin-top:16px;font-size:12.5px;color:var(--ink-soft);line-height:1.6">
-        <strong style="color:var(--ink)">ข้อสังเกต:</strong>
-        ช่วง 15 นาทีท้ายไม่ได้แยก task ย่อย (เช็ด/ล้อ/touch-up) — เป็น elapsed time ไม่ใช่ labour time
-        ในขณะเดียวกัน Vehicle #4 ใช้ post-machine finishing เพียง 3 นาที แสดงว่าช่วงนี้ของ #5 อาจรวมเวลารอ staff หรือตบแต่งหนักกว่าเฉลี่ย
-      </p>
+      <div style="margin-top:16px;font-size:13px;color:var(--ink-muted);line-height:1.65">
+        <div style="color:var(--ink);font-weight:600;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Key timestamps (observed)</div>
+        <ul style="margin:0;padding-left:18px">
+          <li><strong style="color:var(--ink);font-family:var(--num)">16:16</strong> — Vehicle #4 ออกจากเครื่อง เข้า finishing phase · Vehicle #5 เริ่ม machine cycle ได้ทันที (ต้องรอ #4 เคลียร์เครื่องก่อน)</li>
+          <li><strong style="color:var(--ink);font-family:var(--num)">16:19</strong> — Vehicle #4 ออกจากร้านจริง · finishing phase ของ #4 ใช้เวลา 3 นาที</li>
+          <li><strong style="color:var(--ink);font-family:var(--num)">16:23</strong> — Vehicle #5 จบ automatic machine wash + air-blow · machine cycle = 7 นาที ยืนยันจาก timestamp คู่นี้</li>
+        </ul>
+        <p style="margin:12px 0 0">
+          <strong style="color:var(--ink)">ข้อสังเกต:</strong>
+          ช่วง 15 นาทีท้ายของ #5 (16:23–16:38) ไม่ได้แยก task ย่อย — เป็น elapsed time ไม่ใช่ labour time ·
+          เทียบกับ #4 ที่ finishing ใช้ 3 นาที อาจหมายความว่าช่วงนี้รวมเวลารอ staff หรือ touch-up หนักกว่าเฉลี่ย
+        </p>
+      </div>
     </div>
   </section>
 
   <section>
     <header>
       <h2>Vehicle Log</h2>
-      <div class="caption">7 คัน ตามลำดับมาถึง · เฉพาะ #4 กับ #5 ที่บันทึก departure · #7 ยัง queue ตอนจบการสังเกต</div>
+      <div class="caption">7 คัน ตามลำดับมาถึง · เฉพาะ #4 กับ #5 ที่บันทึก departure · #4 ออกจากเครื่อง 16:16 → ออกจากร้าน 16:19 · #7 ยัง queue ตอนจบการสังเกต</div>
     </header>
     <div class="table-wrap">
       <table>
@@ -604,6 +612,42 @@ footer.foot a:hover { text-decoration: underline; }
     </div>
   </section>
 
+  <section>
+    <header>
+      <h2>Observed vs Inferred vs Unknown</h2>
+      <div class="caption">แยกระดับความแน่นอนของข้อมูลในรายงาน เพื่อให้ Claude / AI / ทีมงานนำไปวิเคราะห์ต่อได้โดยไม่สับสนสมมติฐานกับข้อเท็จจริง</div>
+    </header>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th style="width:140px">ประเภท</th><th>ตัวอย่าง</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill nowait">Observed</span></td>
+            <td>Vehicle #5 เข้า machine 16:16 · จบ air-blow 16:23 · machine cycle = 7 นาที · Vehicle #4 ออกเครื่อง 16:16 → ออกร้าน 16:19 · arrival/departure ที่บันทึกในตาราง</td>
+          </tr>
+          <tr>
+            <td><span class="pill queue">Estimated</span></td>
+            <td>พนักงาน 3–4 คน · อายุรถแต่ละคัน · model/ประเภทของรถ #3 (รุ่นเก่า, ไม่มี badge ชัด)</td>
+          </tr>
+          <tr>
+            <td><span class="pill wait">Hypothesis</span></td>
+            <td>6 คันเป็นลูกค้าเดิม (เพราะไม่คุย service) · สาเหตุ corrosion ของ metal sheet ที่ติดถึงพื้น · ปกติร้านอาจ busy กว่านี้ 2–4 เท่า</td>
+          </tr>
+          <tr>
+            <td><span class="pill" style="background:var(--rail);color:var(--ink-muted)">Unknown</span></td>
+            <td>ISTOBAL model/serial · ปริมาณน้ำที่ใช้จริงต่อคัน · departure ของ #1–#3, #6–#7 · task breakdown ใน 15 นาทีท้ายของ #5 · usable volume ของถังน้ำ 2 × 3,000L · ระบบ recycle น้ำ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:12.5px;color:var(--ink-soft);line-height:1.6">
+      <strong style="color:var(--ink)">หมายเหตุ:</strong>
+      ก่อนนำข้อมูลใด ๆ ไปใช้ — ตรวจสอบระดับใน column ซ้ายก่อน · Observed คือสิ่งที่จับเวลา/เห็นในสนามจริง · Estimated / Hypothesis / Unknown ต้องอัปเกรดจาก follow-up fieldwork
+    </p>
+  </section>
+
   <aside class="method">
     <p>
       <strong>Data quality conventions.</strong>
@@ -622,7 +666,7 @@ footer.foot a:hover { text-decoration: underline; }
   </aside>
 
   <footer class="foot">
-    <div><a href="../">← กลับหน้า Predecessors Survey</a>&nbsp;·&nbsp;<a href="../../">ATRX</a>&nbsp;·&nbsp;<a href="../../../">หน้าหลัก</a></div>
+    <div><a href="../">← กลับหน้า Market Leader Survey</a>&nbsp;·&nbsp;<a href="../../">ATRX</a>&nbsp;·&nbsp;<a href="../../../">หน้าหลัก</a></div>
   </footer>
 </main>
 </body>
